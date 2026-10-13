@@ -96,8 +96,9 @@ DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=laravel
-DB_USERNAME=laravel
+DB_USERNAME=laravel_app
 DB_PASSWORD=secret
+MYSQL_ROOT_PASSWORD=secret
 ```
 
 Redis:
@@ -424,3 +425,32 @@ REST APIs
 k6 Load Testing
 Basic Horizontal Scaling
 ```
+
+## Architecture Status
+
+| Area | Current Status | Notes |
+|---|---|---|
+| Docker Compose Services | Working | Containers start successfully |
+| Nginx Entry Point | Working | HTTP requests return `200 OK` |
+| Laravel App Containers | Healthy | `app-1` and `app-2` are healthy |
+| MySQL Connectivity | Working | Database connection verified |
+| Database Migrations | Working | Existing migrations show `Ran` |
+| Redis Connectivity | Working | Redis ping successful |
+| Nginx Load Balancing | Working  | Requests reached both Laravel app containers |
+| Shared Sessions | Working | Verify sessions persist across both app containers |
+| Shared Uploaded Files | Working | Verify uploaded files are accessible from both containers |
+| HTTPS Configuration | Pending Verification | Verify TLS certificate and HTTPS redirect |
+| Production Secrets | Needs Review | Verify strong credentials and secure secret management |
+| Automated Database Backups | Pending Verification | Configure and schedule backups |
+| Backup Restore Testing | Pending Verification | Verify backups can restore the database successfully |
+| Monitoring and Alerting | Pending Verification | Configure health monitoring, log collection and alerts |
+| Failure Recovery | Pending Verification | Test application and dependency failures |
+| Deployment Rollback | Pending Verification | Define and test a rollback procedure |
+| Resource Limits | Pending Verification | Configure suitable CPU and memory limits |
+| Production Readiness | In Progress | Complete the remaining verification and testing |
+
+**Legend**
+- `Working` — Verified successfully.
+- `Pending Verification` — Not yet tested or confirmed.
+- `Needs Review` — Requires configuration and security review.
+- `In Progress` — Remaining production-readiness tasks are underway.
