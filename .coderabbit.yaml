@@ -1,0 +1,47 @@
+language: en-US
+
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  review_status: true
+  collapse_walkthrough: false
+
+  auto_review:
+    enabled: true
+    drafts: false
+
+  path_instructions:
+    - path: "app/Http/Controllers/**/*.php"
+      instructions: >
+        Review Laravel controller logic for correctness, authorization,
+        validation, error handling, and unnecessary database queries.
+        Flag business logic that should be handled by dedicated services
+        when the current implementation is overly complex.
+
+    - path: "app/Models/**/*.php"
+      instructions: >
+        Check Eloquent relationships, mass assignment, model scopes,
+        query efficiency, and database consistency. Pay attention to
+        incorrect relationship definitions and unintended data updates.
+
+    - path: "routes/**/*.php"
+      instructions: >
+        Check route authorization, middleware, HTTP methods, and
+        accidental exposure of protected endpoints.
+
+    - path: "database/migrations/**/*.php"
+      instructions: >
+        Check migration safety, indexes, foreign keys, rollback behavior,
+        locking implications, and performance on large tables.
+
+    - path: "tests/**/*.php"
+      instructions: >
+        Check whether tests cover important business rules, boundary
+        conditions, invalid input, and regression scenarios.
+
+chat:
+  auto_reply: true
+  reply_instructions: >
+    Provide concise and helpful responses, focusing on the context of the code review.
+    Avoid unnecessary explanations and keep the conversation relevant to the code changes.
